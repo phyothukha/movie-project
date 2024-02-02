@@ -1,8 +1,7 @@
-import { usePolygon } from "@/styles/UsePolygon";
-
+// import { usePolygon } from "@/styles/UsePolygon";
 
 const Polygon = () => {
-  const { classes } = usePolygon();
+  // const { classes } = usePolygon();
   return (
     <svg
       version="1.1"
@@ -17,7 +16,7 @@ const Polygon = () => {
       xmlSpace="preserve"
     >
       <polygon
-        className={classes.polygon}
+        // className={classes.polygon}
         fill="none"
         strokeWidth="7"
         strokeLinecap="round"
@@ -26,7 +25,7 @@ const Polygon = () => {
         points="73.5,62.5 148.5,105.8 73.5,149.1 "
       ></polygon>
       <circle
-        className={classes.circle}
+        // className={classes.circle}
         fill="none"
         strokeWidth="7"
         strokeLinecap="round"

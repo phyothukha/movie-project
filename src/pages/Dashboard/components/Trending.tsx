@@ -1,11 +1,12 @@
 import { Box, Container, Flex, SegmentedControl, Title } from "@mantine/core";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { useState } from "react";
 import fetchDataFromApi from "@/api";
 import { movieType } from "@/types/MovieType/movietype";
 import CarouselComponent from "@/components/carousel/Carousel";
-import { useSegements } from "@/styles/UseSegment";
+// import { useSegements } from "@/styles/UseSegment";
 import { useMediaQuery } from "@mantine/hooks";
+import { useQuery } from "@tanstack/react-query";
 
 const Trending = () => {
   const [endpoint, setEndpoint] = useState("day");
@@ -22,7 +23,7 @@ const Trending = () => {
     setEndpoint(data === "Day" ? "day" : "week");
   };
 
-  const { classes } = useSegements();
+  // const { classes } = useSegements();
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
 
   return (
@@ -42,7 +43,7 @@ const Trending = () => {
             radius="xl"
             size={"sm"}
             data={["Day", "Week"]}
-            classNames={classes}
+            // classNames={classes}
             onChange={onTabChange}
           />
         </Flex>

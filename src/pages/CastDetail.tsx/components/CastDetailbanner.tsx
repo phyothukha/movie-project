@@ -58,17 +58,17 @@ const CastDetailbanner: FC<CastBioProps> = ({ castBio, loading }) => {
             <Flex
               direction={"column"}
               gap={10}
-              sx={{
+              style={{
                 position: "relative",
               }}
             >
-              <Title color="white" size={isSmallerThanTable ? 20 : 25}>
+              <Title c="white" size={isSmallerThanTable ? 20 : 25}>
                 {castBio?.name}
               </Title>
               <Title mt={20} size={isSmallerThanTable ? 20 : 25}>
                 BioGraphy
               </Title>
-              <Text fw={500} size={18} color="white">
+              <Text fw={500} size={"18px"} c="white">
                 {fullBiography
                   ? castBio?.biography
                   : castBio?.biography.substring(0, 700)}

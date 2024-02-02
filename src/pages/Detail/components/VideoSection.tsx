@@ -8,7 +8,7 @@ import Polygon from "@/components/Videotype/Polygon";
 import VidepPopup from "@/components/Videotype/VideoPopup";
 
 interface VideoProps {
-  video?: videoresult[];
+  video: videoresult[];
 }
 
 const VideoSection: FC<VideoProps> = ({ video }) => {

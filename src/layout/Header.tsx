@@ -90,7 +90,7 @@ const Header = () => {
                   aria-label={label}
                 />
                 {opened && (
-                  <Group position="center" mt={30} className="navbar-opened">
+                  <Group mt={30} className="navbar-opened">
                     <Flex direction={"column"} w={"100%"}>
                       <Text
                         className="navbar"

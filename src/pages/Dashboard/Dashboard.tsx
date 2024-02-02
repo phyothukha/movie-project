@@ -4,11 +4,11 @@ import Trending from "./components/Trending";
 import Popular from "./components/Popular";
 import Toprated from "./components/Toprated";
 import { Card, Container, Skeleton, Text, Title } from "@mantine/core";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { CastListType } from "@/types/CastType/Cast";
 import fetchDataFromApi from "@/api";
 import { Carousel } from "@mantine/carousel";
-import { useStyle } from "@/styles/UseStyles";
+// import { useStyle } from "@/styles/UseStyles";
 import useHomeStore from "@/store/client/movieslice";
 import { useNavigate } from "react-router-dom";
 import PosterFallback from "@/assets/no-poster.png";
@@ -17,6 +17,7 @@ import {
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
 import { useMediaQuery } from "@mantine/hooks";
+import { useQuery } from "@tanstack/react-query";
 
 const Dashboard = () => {
   const {
@@ -29,7 +30,7 @@ const Dashboard = () => {
     refetchOnWindowFocus: false,
   });
   console.log({ CastData });
-  const { classes } = useStyle();
+  // const { classes } = useStyle();
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   const isSmallestTable = useMediaQuery("(max-width:390px)");
   const { url } = useHomeStore();
@@ -55,7 +56,7 @@ const Dashboard = () => {
           slideGap={isSmallerThanTable ? "md" : "lg"}
           loop
           align="start"
-          classNames={classes}
+          // classNames={classes}
           slidesToScroll={3}
           withControls={isSmallerThanTable ? false : true}
           nextControlIcon={
@@ -71,19 +72,19 @@ const Dashboard = () => {
                   <Skeleton
                     h={isSmallerThanTable ? 250 : 280}
                     w={"100%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"90%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"50%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                 </Carousel.Slide>
               ))
@@ -109,7 +110,10 @@ const Dashboard = () => {
                           alt="cast-image"
                         />
                       </Card>
-                      <Text fw={700} size={isSmallerThanTable ? 14 : 18}>
+                      <Text
+                        fw={700}
+                        size={isSmallerThanTable ? "14px" : "18px"}
+                      >
                         {trend.name}
                         ...
                       </Text>

@@ -1,18 +1,18 @@
 import { useParams } from "react-router-dom";
 import DetailBanner from "./components/DetailBanner";
-import { useQuery } from "react-query";
 import Cast from "./components/Cast";
 import VideoSection from "./components/VideoSection";
 import { Container } from "@mantine/core";
 import fetchDataFromApi from "@/api";
 import { CreditType, videoType } from "@/types/MovieDetail/Credits";
-import { useStyle } from "@/styles/UseStyles";
+// import { useStyle } from "@/styles/UseStyles";
 import { movieType } from "@/types/MovieType/movietype";
 import Layout from "@/layout/Layout";
 import CarouselComponent from "@/components/carousel/Carousel";
+import { useQuery } from "@tanstack/react-query";
 
 const Detail = () => {
-  const { classes } = useStyle();
+  // const { classes } = useStyle();
   const { mediatype, id } = useParams();
   const { data: detailvideo } = useQuery<videoType>({
     queryKey: ["detail-video", id],
@@ -45,6 +45,7 @@ const Detail = () => {
     refetchOnWindowFocus: false,
   });
   const title2 = mediatype === "tv" ? "Recommand TV shows" : "Recommand Movies";
+  if (detailvideo?.results === undefined || credits?.crew === undefined) return;
 
   return (
     <Layout>
@@ -68,7 +69,7 @@ const Detail = () => {
           title={title2}
         />
       </Container>
-      <div className={classes.backShadow}></div>
+      {/* <div className={classes.backShadow}></div> */}
     </Layout>
   );
 };

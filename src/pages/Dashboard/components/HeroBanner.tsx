@@ -10,31 +10,42 @@ import {
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useMediaQuery } from "@mantine/hooks";
 import useHomeStore from "@/store/client/movieslice";
-import { useQuery } from "react-query";
 import { movieType } from "@/types/MovieType/movietype";
 import fetchDataFromApi from "@/api";
 import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useStyle } from "@/styles/UseStyles";
+// import { useStyle } from "@/styles/UseStyles";
+import { useQuery } from "@tanstack/react-query";
 
 const HeroBanner = () => {
-  const { classes } = useStyle();
+  // const { classes } = useStyle();
   const [background, setBackground] = useState("");
   const { url } = useHomeStore();
   const [query, setQuery] = useState<string>("");
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   const navigate = useNavigate();
-  const { isFetching } = useQuery<movieType>({
-    queryKey: "movie-list",
+  const {
+    data: moviedata,
+    isSuccess,
+    isFetching,
+  } = useQuery<movieType>({
+    queryKey: ["movie-list"],
     queryFn: () => fetchDataFromApi("/movie/upcoming"),
     refetchOnWindowFocus: false,
-    onSuccess: (Movie) => {
-      const randombgPath =
-        url.backdrop +
-        Movie?.results?.[Math.floor(Math.random() * 20)].backdrop_path;
-      setBackground(randombgPath);
-    },
+    // onSuccess: (Movie) => {
+    //   const randombgPath =
+    //     url.backdrop +
+    //     Movie?.results?.[Math.floor(Math.random() * 20)].backdrop_path;
+    //   setBackground(randombgPath);
+    // },
   });
+
+  if (isSuccess) {
+    const randombgPath =
+      url.backdrop +
+      moviedata?.results?.[Math.floor(Math.random() * 20)].backdrop_path;
+    setBackground(randombgPath);
+  }
 
   const searchData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,20 +59,26 @@ const HeroBanner = () => {
         <LazyLoadImage
           src={background}
           alt="back-drop-image"
-          className={classes.lazyImage}
+          // className={classes.lazyImage}
         />
       )}
       <Box>
-        <Flex direction={"column"} className={classes.heroSection}>
+        <Flex
+          direction={"column"}
+          // className={classes.heroSection}
+        >
           <Box pos={"relative"}>
-            <Title size={isSmallerThanTable ? 50 : 80} color="white">
+            <Title size={isSmallerThanTable ? 50 : 80} c="white">
               Welcome
             </Title>
-            <Text size={isSmallerThanTable ? 20 : 25} color="white">
+            <Text size={isSmallerThanTable ? "20px" : "25px"} c="white">
               Millions of movies, TV shows and people to discover. Explore now.
             </Text>
           </Box>
-          <form className={classes.hersectionForm} onSubmit={searchData}>
+          <form
+            // className={classes.hersectionForm}
+            onSubmit={searchData}
+          >
             <TextInput
               type="text"
               size={isSmallerThanTable ? "md" : "xl"}
@@ -82,7 +99,9 @@ const HeroBanner = () => {
           </form>
         </Flex>
       </Box>
-      <div className={classes.backShadow} />
+      <div
+      // className={classes.backShadow}
+      />
     </Container>
   );
 };

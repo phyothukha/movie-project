@@ -1,11 +1,12 @@
 import { Box, Container, Flex, SegmentedControl, Title } from "@mantine/core";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { useState } from "react";
 import fetchDataFromApi from "@/api";
 import { movieType } from "@/types/MovieType/movietype";
 import CarouselComponent from "@/components/carousel/Carousel";
-import { useSegements } from "@/styles/UseSegment";
+// import { useSegements } from "@/styles/UseSegment";
 import { useMediaQuery } from "@mantine/hooks";
+import { useQuery } from "@tanstack/react-query";
 
 const Toprated = () => {
   const [endpoint, setEndpoint] = useState("tv");
@@ -24,7 +25,7 @@ const Toprated = () => {
     console.log(data);
   };
 
-  const { classes } = useSegements();
+  // const { classes } = useSegements();
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
 
   return (
@@ -44,7 +45,7 @@ const Toprated = () => {
             radius="xl"
             size={"sm"}
             data={["TV", "MOVIE"]}
-            classNames={classes}
+            // classNames={classes}
             onChange={onTabChange}
           />
         </Flex>
