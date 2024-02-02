@@ -4,6 +4,7 @@ import { movieType } from "@/types/MovieType/movietype";
 import { useState } from "react";
 import CarouselComponent from "@/components/carousel/Carousel";
 import fetchDataFromApi from "@/api";
+import classes from "../styles/popular.module.css";
 // import { useSegements } from "@/styles/UseSegment";
 import { useMediaQuery } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
@@ -23,7 +24,8 @@ const Popular = () => {
     setEndpoint(data === "TV" ? "tv" : "movie");
   };
 
-  // const { classes } = useSegements();
+  console.log(trendMovie);
+
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   return (
     <Box
@@ -42,7 +44,7 @@ const Popular = () => {
             radius="xl"
             size={"sm"}
             data={["TV", "MOVIE"]}
-            // classNames={classes}
+            classNames={classes}
             onChange={onTabChange}
           />
         </Flex>

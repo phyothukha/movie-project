@@ -33,7 +33,20 @@ const MovieCard: FC<exploreProps> = ({ explore, mediatype }) => {
       >
         <img width={"100%"} height={"100%"} src={postUrl} alt="movie-list" />
       </Card>
-      <div className="circular-progress-movie">
+      <div
+        className="circular-progress-movie"
+        style={{
+          position: "relative",
+          width: "40px",
+          top: -20,
+          left: "10px",
+          height: "40px",
+          background: "white",
+          borderRadius: "50%",
+          flexShrink: 0,
+          padding: "2px",
+        }}
+      >
         <CircularProgress rating={explore.vote_average.toFixed(1)} />
       </div>
       <Text fw={700} size={isSmallerThanTable ? "14px" : "18px"}>

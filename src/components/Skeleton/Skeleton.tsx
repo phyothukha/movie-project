@@ -25,6 +25,7 @@ const Skelton: FC<skeletonprops> = ({ style }) => {
       <Box w={isSmallestTable ? "100%" : "30%"}>
         <Skeleton
           // className={classes.sketon}
+          className="skeleton"
           h={style ? 500 : 400}
         />
       </Box>
@@ -32,6 +33,7 @@ const Skelton: FC<skeletonprops> = ({ style }) => {
         <Skeleton
           h={30}
           // className={classes.sketon}
+          className="skeleton"
           w="70%"
           radius="xl"
         />
@@ -39,6 +41,7 @@ const Skelton: FC<skeletonprops> = ({ style }) => {
           h={30}
           mt={6}
           // className={classes.sketon}
+          className="skeleton"
           radius="xl"
         />
         {style && (
@@ -48,12 +51,14 @@ const Skelton: FC<skeletonprops> = ({ style }) => {
               w={"10%"}
               mt={6}
               // className={classes.sketon}
+              className="skeleton"
               radius="xl"
             />
             <Skeleton
               h={20}
               w={"10%"}
               mt={6}
+              className="skeleton"
               // className={classes.sketon}
               radius="xl"
             />
@@ -64,12 +69,12 @@ const Skelton: FC<skeletonprops> = ({ style }) => {
             h={30}
             w={"30%"}
             mb={10}
-            // className={classes.sketon}
+            className="skeleton"
             radius="xl"
           />
           <Skeleton
             h={100}
-            // className={classes.sketon}
+            className="skeleton"
             radius="lg"
           />
         </Box>
@@ -78,7 +83,7 @@ const Skelton: FC<skeletonprops> = ({ style }) => {
             h={30}
             w={"50%"}
             mb={10}
-            // className={classes.sketon}
+            className="skeleton"
             radius="xl"
           />
         </Box>

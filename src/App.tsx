@@ -3,10 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import { configuretype } from "./types/Configure/configuration";
 // import useHomeStore from "./store/client/movieslice";
 // import { Suspense } from "react";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import fetchDataFromApi from "./api";
 import Loading from "./pages/loader";
 import { useQuery } from "@tanstack/react-query";
+import useHomeStore from "./store/client/movieslice";
 // import Detail from "./pages/Detail/Detail";
 // const Dashboard = lazy(() => import("@/pages/Dashboard/Dashboard"));
 // const Detail = lazy(() => import("@/pages/Detail/Detail"));
@@ -15,11 +16,24 @@ import { useQuery } from "@tanstack/react-query";
 // const Explore = lazy(() => import("@/pages/explore/Explore"));
 
 export default function App() {
-  // const setApiConfiguration = useHomeStore(
-  //   (state) => state.setApiConfiguration
-  // );
+  const { setApiConfiguration } = useHomeStore();
+  // const { data: configureData, isLoading, isSuccess } = useGetConfigureData();
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setApiConfiguration({
+  //       backdrop: configureData.images.secure_base_url + "original",
+  //       poster: configureData.images.secure_base_url + "original",
+  //       profile: configureData.images.secure_base_url + "original",
+  //     });
+  //   }
+  // });
 
-  const { isFetching, isLoading } = useQuery<configuretype>({
+  // if (isLoading || !configureData) return;
+  const {
+    data: configureData,
+    isSuccess,
+    isLoading,
+  } = useQuery<configuretype>({
     queryKey: ["configure"],
     queryFn: () => fetchDataFromApi("/configuration"),
     refetchOnWindowFocus: false,
@@ -32,7 +46,15 @@ export default function App() {
     // },
   });
 
-  if (isFetching && isLoading) <Loading />;
+  if (isSuccess) {
+    setApiConfiguration({
+      backdrop: configureData.images.secure_base_url + "original",
+      poster: configureData.images.secure_base_url + "original",
+      profile: configureData.images.secure_base_url + "original",
+    });
+  }
+
+  if (isLoading) <Loading />;
   return (
     // <Suspense fallback={<Loading />}>
     <Routes>

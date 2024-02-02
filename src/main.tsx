@@ -5,12 +5,14 @@ import { MantineProvider } from "@mantine/core";
 import { BrowserRouter } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "@mantine/core/styles.css";
+import "./styles/globalstyle.css";
+import { theme } from "./styles/theme.ts";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
-    <MantineProvider>
+    <MantineProvider defaultColorScheme="auto" theme={theme}>
       <QueryClientProvider client={queryClient}>
         <App />
 

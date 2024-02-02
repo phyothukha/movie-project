@@ -5,6 +5,7 @@ import fetchDataFromApi from "@/api";
 import { movieType } from "@/types/MovieType/movietype";
 import CarouselComponent from "@/components/carousel/Carousel";
 // import { useSegements } from "@/styles/UseSegment";
+import classes from "../styles/popular.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
 
@@ -45,7 +46,7 @@ const Toprated = () => {
             radius="xl"
             size={"sm"}
             data={["TV", "MOVIE"]}
-            // classNames={classes}
+            classNames={classes}
             onChange={onTabChange}
           />
         </Flex>

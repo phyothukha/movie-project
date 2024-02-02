@@ -1,0 +1,72 @@
+.logo {
+  width: 50px;
+  cursor: pointer;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #04152d;
+  border-radius: 50%;
+  transition: all ease 0.3s;
+}
+
+.logo:hover {
+  box-shadow: 0 0 0.625em #da2f68;
+  color: #da2f68;
+}
+
+.footerNav {
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.5s;
+  font-size: 20px;
+  cursor: pointer;
+}
+.footerNav:hover {
+  color: purple;
+}
+
+.navbar {
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.navbarOpened {
+  position: absolute;
+  padding: 10px;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.navbar:hover {
+  color: purple;
+}
+
+.searchForm {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  top: 80px;
+  z-index: 100;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.25);
+}
+.searchTextInput > input {
+  background: #fff;
+  padding: 20px;
+  color: #000;
+  border-radius: 30px;
+}
+
+@media ((max-width: 768px)) {
+  .footerNav {
+    font-size: 13px;
+  }
+}

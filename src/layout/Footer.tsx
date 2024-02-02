@@ -1,8 +1,8 @@
-import { Container, Center, Flex, Text } from "@mantine/core";
+import { Container, Center, Text, Flex } from "@mantine/core";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { BsLinkedin } from "react-icons/bs";
 import { useMediaQuery } from "@mantine/hooks";
-// import { useStyle } from "@/styles/UseStyles";
+import classes from "./styles/Layout.module.css";
 
 interface footerDataProps {
   id: number;
@@ -21,12 +21,13 @@ const footerData: footerDataProps[] = [
 
 const Footer = () => {
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
-  // const { classes } = useStyle();
+
   return (
     <Center
+      bg={"#020c1b"}
+      pos={"relative"}
       style={{
-        background: "#020c1b",
-        position: "relative",
+        padding: 10,
       }}
     >
       <Container
@@ -36,16 +37,16 @@ const Footer = () => {
           textAlign: "center",
         }}
       >
-        <Flex direction={"column"} gap={30}>
-          <Flex justify={"center"} gap={20} align={"center"} h={"100%"}>
+        <Flex justify={"center"} direction={"column"}>
+          <Flex justify={"center"} gap={"30px"} align={"center"}>
             {footerData.map(({ id, NavTitle }) => (
-              <Text key={id} className={"footer-nav"}>
+              <Text key={id} fw={"bold"} className={classes.footerNav}>
                 {NavTitle}
               </Text>
             ))}
           </Flex>
           <Text
-            color="#dadce0"
+            c="#dadce0"
             fz={isSmallerThanTable ? 14 : 20}
             fw={"bold"}
             opacity={0.5}
@@ -55,19 +56,23 @@ const Footer = () => {
             saepe minima labore sequi illo, reprehenderit repellendus ipsam
             quasi. Doloremque, voluptate possimus.
           </Text>
-          <Flex justify={"center"} gap={isSmallerThanTable ? 10 : 30}>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 10,
+            }}
+          >
             {footerData.map(
               ({ id, icon }) =>
                 icon && (
-                  <div
-                    // className={classes.logo}
-                    key={id}
-                  >
+                  <div className={classes.logo} key={id}>
                     {icon}
                   </div>
                 )
             )}
-          </Flex>
+          </div>
         </Flex>
       </Container>
     </Center>

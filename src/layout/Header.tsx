@@ -12,6 +12,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useMediaQuery, useDisclosure } from "@mantine/hooks";
 import { FiSearch } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
+import classes from "./styles/Layout.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -90,16 +91,16 @@ const Header = () => {
                   aria-label={label}
                 />
                 {opened && (
-                  <Group mt={30} className="navbar-opened">
+                  <Group mt={30} className={classes.navbarOpened}>
                     <Flex direction={"column"} w={"100%"}>
                       <Text
-                        className="navbar"
+                        className={classes.navbar}
                         onClick={() => navigationhandler("movie")}
                       >
                         Movies
                       </Text>
                       <Text
-                        className="navbar"
+                        className={classes.navbar}
                         onClick={() => navigationhandler("tv")}
                       >
                         TV Shows
@@ -111,13 +112,13 @@ const Header = () => {
             ) : (
               <Flex gap={20}>
                 <Text
-                  className="navbar"
+                  className={classes.navbar}
                   onClick={() => navigationhandler("movie")}
                 >
                   Movies
                 </Text>
                 <Text
-                  className="navbar"
+                  className={classes.navbar}
                   onClick={() => navigationhandler("tv")}
                 >
                   TVShows
@@ -133,10 +134,10 @@ const Header = () => {
               }}
             />
             {show && (
-              <form className="search-form">
+              <form className={classes.searchForm}>
                 <TextInput
                   placeholder="Search Movie"
-                  className="search-text-input"
+                  className={classes.searchTextInput}
                   rightSection={
                     <ImCross
                       onClick={() => setShow(!show)}
