@@ -9,7 +9,7 @@ import {
   Divider,
 } from "@mantine/core";
 import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PlayBtn from "../../../components/Videotype/PlayBtn";
 import { FC } from "react";
@@ -18,20 +18,21 @@ import PosterFallback from "@/assets/no-poster.png";
 import { useMediaQuery } from "@mantine/hooks";
 import fetchDataFromApi from "@/api";
 import { CrewType, videoresult } from "@/types/MovieDetail/Credits";
-import { useStyle } from "@/styles/UseStyles";
+// import { useStyle } from "@/styles/UseStyles";
 import useHomeStore, { genresProps } from "@/store/client/movieslice";
 import { detailProps } from "@/types/MovieDetail/Detail";
 import CircularProgress from "@/components/Circular/CircularProgress";
 import InfoData from "@/components/InfoData/InfoData";
 import Skelton from "@/components/Skeleton/Skeleton";
+import { useQuery } from "@tanstack/react-query";
 
 interface StatusType {
-  crew?: CrewType[];
-  video?: videoresult;
+  crew: CrewType[];
+  video: videoresult;
 }
 
 const DetailBanner: FC<StatusType> = ({ crew, video }) => {
-  const { classes } = useStyle();
+  // const { classes } = useStyle();
   const { mediatype, id } = useParams();
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   const isSmallestTable = useMediaQuery("(max-width:420px)");
@@ -58,12 +59,11 @@ const DetailBanner: FC<StatusType> = ({ crew, video }) => {
       {!isFetching ? (
         <>
           <LazyLoadImage
-            className={classes.lazyImage}
+            // className={classes.lazyImage}
             src={url.backdrop + movieDetail?.backdrop_path}
           />
           <Flex
             gap={20}
-            // justify={"space-between"}
             w={"100%"}
             style={{
               position: "relative",
@@ -87,10 +87,10 @@ const DetailBanner: FC<StatusType> = ({ crew, video }) => {
             </Box>
             <Box w={isSmallestTable ? "100%" : "65%"}>
               <Flex direction={"column"} gap={10} pos={"relative"}>
-                <Title color="white" size={isSmallerThanTable ? 20 : 25}>
+                <Title c="white" size={isSmallerThanTable ? 20 : 25}>
                   {movieDetail?.title || movieDetail?.name}
                 </Title>
-                <Text fw={700} mt={10} size={isSmallerThanTable ? 18 : 20}>
+                <Text fw={700} mt={10} size={isSmallerThanTable ? "18" : "20"}>
                   {movieDetail?.tagline}
                 </Text>
                 <Flex gap={5}>
@@ -118,7 +118,7 @@ const DetailBanner: FC<StatusType> = ({ crew, video }) => {
                 </Flex>
                 <Title size={isSmallerThanTable ? 20 : 25}>OverView</Title>
                 <Text
-                  size={isSmallerThanTable ? 16 : 18}
+                  size={isSmallerThanTable ? "16" : "18"}
                   fw={500}
                   color="white"
                 >

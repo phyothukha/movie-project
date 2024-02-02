@@ -1,0 +1,61 @@
+.logo {
+  width: 50px;
+  cursor: pointer;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #04152d;
+  border-radius: 50%;
+  transition: all ease 0.3s;
+}
+
+.logo:hover {
+  box-shadow: 0 0 0.625em #da2f68;
+  color: #da2f68;
+}
+/* ".footer-nav": {
+  textDecoration: "none",
+  fontWeight: 500,
+  color: "white",
+  transition: "0.5s",
+  cursor: "pointer",
+  fontSize: isSmallerThanTable ? 13 : 20,
+  "&:hover": {
+    color: "purple",
+  },
+}, */
+.footerNav {
+  text-decoration: none;
+  font-weight: 500;
+  color: white;
+  transition: 0.5s;
+  font-size: 20px;
+  cursor: pointer;
+}
+.footerNav:hover {
+  color: purple;
+}
+
+.navbar {
+  /* color: "white",
+  cursor: "pointer",
+  fontWeight: 500,
+  transition: "0.5s", */
+  /* "&:hover": {
+    color: "purple",
+  }, */
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.5s;
+}
+.navbar:hover {
+  color: purple;
+}
+
+@media ((max-width: 768px)) {
+  .footerNav {
+    font-size: 13px;
+  }
+}

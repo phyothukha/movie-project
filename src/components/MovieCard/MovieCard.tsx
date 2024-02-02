@@ -36,10 +36,10 @@ const MovieCard: FC<exploreProps> = ({ explore, mediatype }) => {
       <div className="circular-progress-movie">
         <CircularProgress rating={explore.vote_average.toFixed(1)} />
       </div>
-      <Text fw={700} size={isSmallerThanTable ? 14 : 18}>
+      <Text fw={700} size={isSmallerThanTable ? "sm" : "md"}>
         {explore.title?.substring(0, 20) || explore.name?.substring(0, 20)}...
       </Text>
-      <Text size={isSmallerThanTable ? 12 : 16}>
+      <Text size={isSmallerThanTable ? "sm" : "md"}>
         {dayjs(explore.release_date).format("D-MM-YYYY")}
       </Text>
     </>

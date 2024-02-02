@@ -1,25 +1,25 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { QueryClient, QueryClientProvider } from "react-query";
+// import { QueryClient, QueryClientProvider } from "react-query";
 import { MantineProvider } from "@mantine/core";
 import { BrowserRouter } from "react-router-dom";
-import { ReactQueryDevtools } from "react-query/devtools";
-import MyGlobalStyle from "./styles/MyGlobalStyle.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "./styles/globalStyle.css";
+import "@mantine/core/styles.css";
+// import { theme } from "./styles/theme.ts";
+// import { ReactQueryDevtools } from "react-query/devtools";
+// import MyGlobalStyle from "./styles/MyGlobalStyle.tsx";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <MantineProvider
-    withGlobalStyles
-    withNormalizeCSS
-    theme={{ colorScheme: "dark" }}
-  >
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <MyGlobalStyle />
+  // @mantine/carousel @mantine/core @mantine/form @mantine/hooks @tanstack/react-query zustand
+
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <MantineProvider defaultColorScheme="light">
         <App />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </BrowserRouter>
-  </MantineProvider>
+      </MantineProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
 );

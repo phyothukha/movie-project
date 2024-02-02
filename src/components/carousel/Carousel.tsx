@@ -5,9 +5,8 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { useMediaQuery } from "@mantine/hooks";
 import { resultType } from "@/types/MovieType/movietype";
-import { useStyle } from "@/styles/UseStyles";
+import { useMediaQuery } from "@mantine/hooks";
 import MovieCard from "../MovieCard/MovieCard";
 
 interface CarouselProps {
@@ -25,7 +24,7 @@ const CarouselComponent: React.FC<CarouselProps> = ({
 }) => {
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   const isSmallestTable = useMediaQuery("(max-width:420px)");
-  const { classes } = useStyle();
+  // const { classes } = useStyle();
 
   const hasData = data && data !== undefined && data?.length > 0;
 
@@ -45,7 +44,7 @@ const CarouselComponent: React.FC<CarouselProps> = ({
           align="start"
           withControls={data?.length > 5 && !isSmallerThanTable ? true : false}
           slidesToScroll={2}
-          classNames={classes}
+          // classNames={classes}
           nextControlIcon={
             <BsFillArrowRightCircleFill size={30} color="#000" />
           }
@@ -56,18 +55,18 @@ const CarouselComponent: React.FC<CarouselProps> = ({
           {loading
             ? [1, 2, 3, 4, 5]?.map((trend) => (
                 <Carousel.Slide key={trend}>
-                  <Skeleton h={300} w={"100%"} className={classes.sketon} />
+                  {/* <Skeleton h={300} w={"100%"} className={classes.sketon} /> */}
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"90%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"50%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                 </Carousel.Slide>
               ))

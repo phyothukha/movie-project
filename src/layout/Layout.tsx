@@ -1,4 +1,4 @@
-import { Box, Flex } from "@mantine/core";
+import { Box } from "@mantine/core";
 import Header from "./Header";
 import Footer from "./Footer";
 import { FC, ReactNode } from "react";
@@ -9,11 +9,25 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <Flex direction={"column"} bg={"#04152d"}>
+    <Box
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        background: "#04152d",
+        height: "100vh",
+        justifyContent: "space-between",
+      }}
+    >
       <Header />
-      <Box style={{ flexShrink: 1 }}>{children}</Box>
+      <Box
+        style={{
+          flexShrink: 1,
+        }}
+      >
+        {children}
+      </Box>
       <Footer />
-    </Flex>
+    </Box>
   );
 };
 

@@ -14,7 +14,7 @@ const InfoData: FC<InfoDataType> = ({ label, value }) => {
         flexFlow: "row wrap",
       }}
     >
-      <Text size={16} fw={700} color="white">
+      <Text size={"sm"} fw={700} color="white">
         {label}:
       </Text>
       {value.map((val, index) => (

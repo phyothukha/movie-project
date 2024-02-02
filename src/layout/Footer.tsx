@@ -1,8 +1,8 @@
-import { Container, Center, Flex, Text } from "@mantine/core";
+import { Container, Center, Text, Box } from "@mantine/core";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { BsLinkedin } from "react-icons/bs";
 import { useMediaQuery } from "@mantine/hooks";
-import { useStyle } from "@/styles/UseStyles";
+import classes from "./styles/Layout.module.css";
 
 interface footerDataProps {
   id: number;
@@ -21,12 +21,12 @@ const footerData: footerDataProps[] = [
 
 const Footer = () => {
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
-  const { classes } = useStyle();
   return (
     <Center
+      bg={"#020c1b"}
+      pos={"relative"}
       style={{
-        background: "#020c1b",
-        position: "relative",
+        padding: 10,
       }}
     >
       <Container
@@ -36,16 +36,31 @@ const Footer = () => {
           textAlign: "center",
         }}
       >
-        <Flex direction={"column"} gap={30}>
-          <Flex justify={"center"} gap={20} align={"center"} h={"100%"}>
+        <Box
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 30,
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
             {footerData.map(({ id, NavTitle }) => (
-              <Text key={id} className={"footer-nav"}>
+              <Text key={id} className={classes.footerNav}>
                 {NavTitle}
               </Text>
             ))}
-          </Flex>
+          </Box>
           <Text
-            color="#dadce0"
+            c="#dadce0"
             fz={isSmallerThanTable ? 14 : 20}
             fw={"bold"}
             opacity={0.5}
@@ -55,7 +70,14 @@ const Footer = () => {
             saepe minima labore sequi illo, reprehenderit repellendus ipsam
             quasi. Doloremque, voluptate possimus.
           </Text>
-          <Flex justify={"center"} gap={isSmallerThanTable ? 10 : 30}>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 10,
+            }}
+          >
             {footerData.map(
               ({ id, icon }) =>
                 icon && (
@@ -64,8 +86,8 @@ const Footer = () => {
                   </div>
                 )
             )}
-          </Flex>
-        </Flex>
+          </div>
+        </Box>
       </Container>
     </Center>
   );

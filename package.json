@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@mantine/carousel": "^6.0.19",
-    "@mantine/core": "^6.0.14",
-    "@mantine/form": "^6.0.17",
-    "@mantine/hooks": "^6.0.14",
-    "@tanstack/react-query": "^4.32.6",
+    "@mantine/carousel": "^7.5.0",
+    "@mantine/core": "^7.5.0",
+    "@mantine/form": "^7.5.0",
+    "@mantine/hooks": "^7.5.0",
+    "@tanstack/react-query": "^5.18.0",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
-    "embla-carousel-react": "^8.0.0-rc11",
+    "embla-carousel-react": "8.0.0-rc22",
     "mantine-datatable": "^2.9.4",
     "react": "^18.2.0",
     "react-circular-progress": "^0.1.2",
@@ -27,10 +27,9 @@
     "react-icons": "^4.10.1",
     "react-lazy-load-image-component": "^1.6.0",
     "react-player": "^2.12.0",
-    "react-query": "^3.39.3",
     "react-router-dom": "^6.14.2",
     "react-select": "^5.7.4",
-    "zustand": "^4.4.1"
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
@@ -43,6 +42,9 @@
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.33",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
   }

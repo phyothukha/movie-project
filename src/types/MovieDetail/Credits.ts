@@ -52,4 +52,3 @@ export interface videoresult {
   published_at: string;
   id: string;
 }
-[];

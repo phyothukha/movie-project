@@ -1,45 +1,47 @@
-import HeroBanner from "./components/HeroBanner";
+// import HeroBanner from "./components/HeroBanner";
 import Layout from "@/layout/Layout";
-import Trending from "./components/Trending";
-import Popular from "./components/Popular";
-import Toprated from "./components/Toprated";
-import { Card, Container, Skeleton, Text, Title } from "@mantine/core";
-import { useQuery } from "react-query";
-import { CastListType } from "@/types/CastType/Cast";
-import fetchDataFromApi from "@/api";
-import { Carousel } from "@mantine/carousel";
-import { useStyle } from "@/styles/UseStyles";
-import useHomeStore from "@/store/client/movieslice";
-import { useNavigate } from "react-router-dom";
-import PosterFallback from "@/assets/no-poster.png";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
-import { useMediaQuery } from "@mantine/hooks";
+// import Trending from "./components/Trending";
+// import Popular from "./components/Popular";
+// import Toprated from "./components/Toprated";
+// import { Card, Container, Skeleton, Text, Title } from "@mantine/core";
+// // import { useQuery } from "react-query";
+// import { CastListType } from "@/types/CastType/Cast";
+// import fetchDataFromApi from "@/api";
+// import { Carousel } from "@mantine/carousel";
+// // import { useStyle } from "@/styles/UseStyles";
+// import useHomeStore from "@/store/client/movieslice";
+// import { useNavigate } from "react-router-dom";
+// import PosterFallback from "@/assets/no-poster.png";
+// import {
+//   BsFillArrowLeftCircleFill,
+//   BsFillArrowRightCircleFill,
+// } from "react-icons/bs";
+// import { useMediaQuery } from "@mantine/hooks";
+// import { useQuery } from "@tanstack/react-query";
+import HeroBanner from "./components/HeroBanner";
 
 const Dashboard = () => {
-  const {
-    data: CastData,
-    isLoading,
-    isFetching,
-  } = useQuery<CastListType>({
-    queryKey: ["cast-data"],
-    queryFn: () => fetchDataFromApi(`person/popular`),
-    refetchOnWindowFocus: false,
-  });
-  console.log({ CastData });
-  const { classes } = useStyle();
-  const isSmallerThanTable = useMediaQuery("(max-width:768px)");
-  const isSmallestTable = useMediaQuery("(max-width:390px)");
-  const { url } = useHomeStore();
-  const navigate = useNavigate();
-  const CastResult = CastData?.results;
+  // const {
+  //   data: CastData,
+  //   isLoading,
+  //   isFetching,
+  // } = useQuery<CastListType>({
+  //   queryKey: ["cast-data"],
+  //   queryFn: () => fetchDataFromApi(`person/popular`),
+  //   refetchOnWindowFocus: false,
+  // });
+  // console.log({ CastData });
+  // // const { classes } = useStyle();
+  // const isSmallerThanTable = useMediaQuery("(max-width:768px)");
+  // const isSmallestTable = useMediaQuery("(max-width:390px)");
+  // const { url } = useHomeStore();
+  // const navigate = useNavigate();
+  // const CastResult = CastData?.results;
 
   return (
     <Layout>
       <HeroBanner />
-      <Trending />
+      {/* <Trending />
       <Popular />
       <Toprated />
       <Container my={20} size={"lg"}>
@@ -55,7 +57,7 @@ const Dashboard = () => {
           slideGap={isSmallerThanTable ? "md" : "lg"}
           loop
           align="start"
-          classNames={classes}
+          // classNames={classes}
           slidesToScroll={3}
           withControls={isSmallerThanTable ? false : true}
           nextControlIcon={
@@ -71,19 +73,19 @@ const Dashboard = () => {
                   <Skeleton
                     h={isSmallerThanTable ? 250 : 280}
                     w={"100%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"90%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"50%"}
-                    className={classes.sketon}
+                    // className={classes.sketon}
                   />
                 </Carousel.Slide>
               ))
@@ -109,7 +111,7 @@ const Dashboard = () => {
                           alt="cast-image"
                         />
                       </Card>
-                      <Text fw={700} size={isSmallerThanTable ? 14 : 18}>
+                      <Text fw={700} size={isSmallerThanTable ? "sm" : "md"}>
                         {trend.name}
                         ...
                       </Text>
@@ -118,7 +120,7 @@ const Dashboard = () => {
                 }
               })}
         </Carousel>
-      </Container>
+      </Container> */}
     </Layout>
   );
 };
