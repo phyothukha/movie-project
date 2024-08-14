@@ -6,7 +6,7 @@ import {
   Pagination,
   Title,
 } from "@mantine/core";
-// import { useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useMediaQuery } from "@mantine/hooks";
@@ -14,7 +14,6 @@ import { movieType } from "@/types/MovieType/movietype";
 import fetchDataFromApi from "@/api";
 import Layout from "@/layout/Layout";
 import MovieCard from "@/components/MovieCard/MovieCard";
-import { useQuery } from "@tanstack/react-query";
 
 const Search = () => {
   const [page, setPage] = useState<number>(1);
@@ -25,10 +24,6 @@ const Search = () => {
     queryKey: ["search-data", query, page],
     queryFn: () => fetchDataFromApi(`search/multi?query=${query}&page=${page}`),
   });
-  console.log(Searchdata);
-  if (isLoading) {
-    console.log("hello");
-  }
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
@@ -68,7 +63,7 @@ const Search = () => {
             total={Searchdata?.total_pages || 0}
             value={page}
             onChange={handlePageChange}
-            // position="center"
+            position="center"
             styles={() => ({
               control: {
                 "&[data-active]": {

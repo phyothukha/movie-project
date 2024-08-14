@@ -5,8 +5,8 @@ import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { useNavigate } from "react-router-dom";
 import { CastType } from "@/types/MovieDetail/Credits";
-// import { useStyle } from "@/styles/UseStyles";
-import useHomeStore from "@/store/client/movieslice";
+import { useStyle } from "@/styles/UseStyles";
+import useHomeStore from "@/store/movieslice";
 
 interface CastProps {
   cast?: CastType[];
@@ -14,7 +14,7 @@ interface CastProps {
 }
 
 const Cast: FC<CastProps> = ({ cast, loading }) => {
-  // const { classes } = useStyle();
+  const { classes } = useStyle();
   const url = useHomeStore((state) => state.url);
   const navigate = useNavigate();
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
@@ -57,10 +57,7 @@ const Cast: FC<CastProps> = ({ cast, loading }) => {
                 onClick={() => navigate(`/cast/${actor.id}`)}
               >
                 {loading ? (
-                  <Skeleton
-                    height={300}
-                    //  className={classes.sketon}
-                  />
+                  <Skeleton height={300} className={classes.sketon} />
                 ) : (
                   <img
                     width={"100%"}
@@ -71,14 +68,14 @@ const Cast: FC<CastProps> = ({ cast, loading }) => {
                 )}
               </Card>
 
-              <Text my={10} size={"18px"} ta={"center"} fw={700}>
+              <Text my={10} size={18} align="center" fw={700}>
                 {actor.name}
               </Text>
               <Text
-                ta={"center"}
+                align="center"
                 fw={500}
                 opacity={0.7}
-                size={isSmallerThanTable ? "16px" : " 18px"}
+                size={isSmallerThanTable ? 16 : 18}
               >
                 {actor.character}
               </Text>

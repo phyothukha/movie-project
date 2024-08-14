@@ -1,3 +1,4 @@
+import { useQuery } from "react-query";
 import Layout from "@/layout/Layout";
 import CastDetailbanner from "./components/CastDetailbanner";
 import fetchDataFromApi from "@/api";
@@ -6,7 +7,6 @@ import { CastBio } from "@/types/CastType/CastBio";
 import { Container } from "@mantine/core";
 import CarouselComponent from "@/components/carousel/Carousel";
 import { CastMovieType } from "@/types/CastType/Cast";
-import { useQuery } from "@tanstack/react-query";
 
 const CastDetail = () => {
   const { castId } = useParams();
@@ -16,7 +16,7 @@ const CastDetail = () => {
     isLoading,
     isFetching,
   } = useQuery<CastBio>({
-    queryKey: ["Cast-Bio-Data"],
+    queryKey: "Cast-Bio-Data",
     queryFn: () => fetchDataFromApi(`person/${castId}`),
     refetchOnWindowFocus: false,
   });
@@ -26,7 +26,7 @@ const CastDetail = () => {
     isLoading: CastLoading,
     isFetching: CastFetching,
   } = useQuery<CastMovieType>({
-    queryKey: ["Cast-video-data"],
+    queryKey: "Cast-video-data",
     queryFn: () => fetchDataFromApi(`/person/${castId}/combined_credits`),
   });
 

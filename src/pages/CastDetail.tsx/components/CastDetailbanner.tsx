@@ -8,7 +8,7 @@ import {
   Divider,
 } from "@mantine/core";
 import PosterFallBack from "@/assets/no-poster.png";
-import useHomeStore from "@/store/client/movieslice";
+import useHomeStore from "@/store/movieslice";
 import { CastBio } from "@/types/CastType/CastBio";
 import { FC, useState } from "react";
 import InfoData from "@/components/InfoData/InfoData";
@@ -58,17 +58,17 @@ const CastDetailbanner: FC<CastBioProps> = ({ castBio, loading }) => {
             <Flex
               direction={"column"}
               gap={10}
-              style={{
+              sx={{
                 position: "relative",
               }}
             >
-              <Title c="white" size={isSmallerThanTable ? 20 : 25}>
+              <Title color="white" size={isSmallerThanTable ? 20 : 25}>
                 {castBio?.name}
               </Title>
               <Title mt={20} size={isSmallerThanTable ? 20 : 25}>
                 BioGraphy
               </Title>
-              <Text fw={500} size={"18px"} c="white">
+              <Text fw={500} size={18} color="white">
                 {fullBiography
                   ? castBio?.biography
                   : castBio?.biography.substring(0, 700)}

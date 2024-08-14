@@ -4,16 +4,16 @@ import VidepPopup from "./VideoPopup";
 import { Text } from "@mantine/core";
 import Polygon from "./Polygon";
 import { videoresult } from "@/types/MovieDetail/Credits";
-// import { usePolygon } from "@/styles/UsePolygon";
+import { usePolygon } from "@/styles/UsePolygon";
 
 interface videoProps {
-  video: videoresult;
+  video?: videoresult;
 }
 
 const PlayBtn: FC<videoProps> = ({ video }) => {
   const [show, setShow] = useState<boolean>(false);
   const [videoId, setVideoId] = useState<string>("");
-  // const { classes } = usePolygon();
+  const { classes } = usePolygon();
   return (
     <>
       <Flex
@@ -22,15 +22,11 @@ const PlayBtn: FC<videoProps> = ({ video }) => {
         className="video"
         onClick={() => {
           setShow(true);
-          setVideoId(video?.key);
+          setVideoId(video?.key || "");
         }}
       >
         <Polygon />
-        <Text
-        // className={classes.vitext}
-        >
-          Watch Trailer
-        </Text>
+        <Text className={classes.vitext}>Watch Trailer</Text>
       </Flex>
       <VidepPopup
         show={show}

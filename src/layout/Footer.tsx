@@ -2,7 +2,7 @@ import { Container, Center, Flex, Text } from "@mantine/core";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { BsLinkedin } from "react-icons/bs";
 import { useMediaQuery } from "@mantine/hooks";
-// import { useStyle } from "@/styles/UseStyles";
+import { useStyle } from "@/styles/UseStyles";
 
 interface footerDataProps {
   id: number;
@@ -21,7 +21,7 @@ const footerData: footerDataProps[] = [
 
 const Footer = () => {
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
-  // const { classes } = useStyle();
+  const { classes } = useStyle();
   return (
     <Center
       style={{
@@ -59,10 +59,7 @@ const Footer = () => {
             {footerData.map(
               ({ id, icon }) =>
                 icon && (
-                  <div
-                    // className={classes.logo}
-                    key={id}
-                  >
+                  <div className={classes.logo} key={id}>
                     {icon}
                   </div>
                 )

@@ -1,12 +1,11 @@
 import { Box, Container, Flex, SegmentedControl, Title } from "@mantine/core";
-// import { useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { movieType } from "@/types/MovieType/movietype";
 import { useState } from "react";
 import CarouselComponent from "@/components/carousel/Carousel";
 import fetchDataFromApi from "@/api";
-// import { useSegements } from "@/styles/UseSegment";
+import { useSegements } from "@/styles/UseSegment";
 import { useMediaQuery } from "@mantine/hooks";
-import { useQuery } from "@tanstack/react-query";
 const Popular = () => {
   const [endpoint, setEndpoint] = useState("tv");
 
@@ -23,7 +22,7 @@ const Popular = () => {
     setEndpoint(data === "TV" ? "tv" : "movie");
   };
 
-  // const { classes } = useSegements();
+  const { classes } = useSegements();
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   return (
     <Box
@@ -42,7 +41,7 @@ const Popular = () => {
             radius="xl"
             size={"sm"}
             data={["TV", "MOVIE"]}
-            // classNames={classes}
+            classNames={classes}
             onChange={onTabChange}
           />
         </Flex>

@@ -9,7 +9,7 @@ import {
   Grid,
 } from "@mantine/core";
 import { useState } from "react";
-// import { useQuery } from "react-query";
+import { useQuery } from "react-query";
 import Select, { ActionMeta, MultiValue, SingleValue } from "react-select";
 import makeAnimated from "react-select/animated";
 import { useMediaQuery } from "@mantine/hooks";
@@ -21,9 +21,8 @@ import {
 import fetchDataFromApi from "@/api";
 import { movieType } from "@/types/MovieType/movietype";
 import Layout from "@/layout/Layout";
-// import { colourStyles, colourStyles2 } from "@/styles/UseSelectOption";
+import { colourStyles, colourStyles2 } from "@/styles/UseSelectOption";
 import MovieCard from "@/components/MovieCard/MovieCard";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 const animatedComponents = makeAnimated();
 
@@ -71,8 +70,6 @@ const Explore = () => {
   ) => {
     if (action.action !== "clear") {
       setSortBy(newValue);
-      console.log(newValue);
-      console.log(sortBy);
     } else {
       setSortBy(null);
     }
@@ -87,8 +84,7 @@ const Explore = () => {
           sortBy ? `&sort_by=${sortBy.value}` : ""
         }`
       ),
-    // : true,
-    placeholderData: keepPreviousData,
+    keepPreviousData: true,
   });
 
   //pagination function
@@ -106,7 +102,7 @@ const Explore = () => {
           }}
           my={20}
         >
-          <Title size={20} my={20} ta="center">
+          <Title size={20} my={20} align="center">
             {mediatype === "tv" ? "Explore TV Shows" : "Explore Movies"}
           </Title>
           <Group>
@@ -120,7 +116,7 @@ const Explore = () => {
               onChange={hadleChange}
               components={animatedComponents}
               isClearable={true}
-              // styles={colourStyles}
+              styles={colourStyles}
               placeholder="Select genres"
             />
             <Select
@@ -135,7 +131,7 @@ const Explore = () => {
                 ) => void
               }
               isClearable={true}
-              // styles={colourStyles2}
+              styles={colourStyles2}
               placeholder="Sort By"
             />
           </Group>
@@ -163,9 +159,7 @@ const Explore = () => {
             total={ExploreData?.total_pages || 0}
             value={page}
             onChange={handlePageChange}
-            // position="center"
-            // pos={"c"}
-
+            position="center"
             styles={() => ({
               control: {
                 "&[data-active]": {
