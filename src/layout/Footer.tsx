@@ -27,6 +27,7 @@ const Footer = () => {
       style={{
         background: "#020c1b",
         position: "relative",
+        marginTop: "auto",
       }}
     >
       <Container

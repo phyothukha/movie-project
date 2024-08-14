@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <Flex direction={"column"} bg={"#04152d"}>
+    <Flex direction={"column"} bg={"#04152d"} mih="100vh" >
       <Header />
       <Box style={{ flexShrink: 1 }}>{children}</Box>
       <Footer />
