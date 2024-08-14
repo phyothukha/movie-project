@@ -4,7 +4,7 @@ to know about this project
 
 ## clone this project
 ```bash
-https://github.com/Phyrousroger/movie-project-vers.git
+https://github.com/phyothukha/movie-project.git
 ```
 
 
