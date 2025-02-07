@@ -63,7 +63,6 @@ const DetailBanner: FC<StatusType> = ({ crew, video }) => {
           />
           <Flex
             gap={20}
-            // justify={"space-between"}
             w={"100%"}
             style={{
               position: "relative",

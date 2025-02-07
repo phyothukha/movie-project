@@ -4,7 +4,7 @@ import VidepPopup from "./VideoPopup";
 import { Text } from "@mantine/core";
 import Polygon from "./Polygon";
 import { videoresult } from "@/types/MovieDetail/Credits";
-import { usePolygon } from "@/styles/UsePolygon";
+import { PolygonStyle } from "@/styles/PolygonStyle";
 
 interface videoProps {
   video?: videoresult;
@@ -13,7 +13,7 @@ interface videoProps {
 const PlayBtn: FC<videoProps> = ({ video }) => {
   const [show, setShow] = useState<boolean>(false);
   const [videoId, setVideoId] = useState<string>("");
-  const { classes } = usePolygon();
+  const { classes } = PolygonStyle();
   return (
     <>
       <Flex

@@ -1,6 +1,6 @@
 import { createStyles } from "@mantine/core";
 
-export const usePolygon = createStyles({
+export const PolygonStyle = createStyles({
   polygon: {
     strokeDasharray: 240,
     strokeDashoffset: 480,

@@ -21,7 +21,7 @@ import {
 import fetchDataFromApi from "@/api";
 import { movieType } from "@/types/MovieType/movietype";
 import Layout from "@/layout/Layout";
-import { colourStyles, colourStyles2 } from "@/styles/UseSelectOption";
+import { colourStyles, colourStyles2 } from "@/styles/SelectOptionStyle";
 import MovieCard from "@/components/MovieCard/MovieCard";
 
 const animatedComponents = makeAnimated();
@@ -75,7 +75,6 @@ const Explore = () => {
     }
   };
 
-  //fetch-data explore
   const { data: ExploreData, isLoading } = useQuery<movieType>({
     queryKey: ["explore-data", mediatype, page, genre, sortBy?.value],
     queryFn: () =>
@@ -87,7 +86,6 @@ const Explore = () => {
     keepPreviousData: true,
   });
 
-  //pagination function
   const handlePageChange = (newpage: number) => {
     setPage(newpage);
   };

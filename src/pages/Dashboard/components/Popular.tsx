@@ -4,7 +4,7 @@ import { movieType } from "@/types/MovieType/movietype";
 import { useState } from "react";
 import CarouselComponent from "@/components/carousel/Carousel";
 import fetchDataFromApi from "@/api";
-import { useSegements } from "@/styles/UseSegment";
+import { useSegements } from "@/styles/SegmentStyle";
 import { useMediaQuery } from "@mantine/hooks";
 const Popular = () => {
   const [endpoint, setEndpoint] = useState("tv");

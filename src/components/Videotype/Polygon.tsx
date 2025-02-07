@@ -1,8 +1,7 @@
-import { usePolygon } from "@/styles/UsePolygon";
-
+import { PolygonStyle } from "@/styles/PolygonStyle";
 
 const Polygon = () => {
-  const { classes } = usePolygon();
+  const { classes } = PolygonStyle();
   return (
     <svg
       version="1.1"

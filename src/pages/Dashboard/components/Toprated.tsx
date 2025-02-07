@@ -4,7 +4,7 @@ import { useState } from "react";
 import fetchDataFromApi from "@/api";
 import { movieType } from "@/types/MovieType/movietype";
 import CarouselComponent from "@/components/carousel/Carousel";
-import { useSegements } from "@/styles/UseSegment";
+import { useSegements } from "@/styles/SegmentStyle";
 import { useMediaQuery } from "@mantine/hooks";
 
 const Toprated = () => {
