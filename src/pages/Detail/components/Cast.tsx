@@ -57,7 +57,7 @@ const Cast: FC<CastProps> = ({ cast, loading }) => {
                 onClick={() => navigate(`/cast/${actor.id}`)}
               >
                 {loading ? (
-                  <Skeleton height={300} className={classes.sketon} />
+                  <Skeleton height={300} className={classes.skeleton} />
                 ) : (
                   <img
                     width={"100%"}

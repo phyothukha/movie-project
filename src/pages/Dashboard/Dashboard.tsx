@@ -71,19 +71,19 @@ const Dashboard = () => {
                   <Skeleton
                     h={isSmallerThanTable ? 250 : 280}
                     w={"100%"}
-                    className={classes.sketon}
+                    className={classes.skeleton}
                   />
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"90%"}
-                    className={classes.sketon}
+                    className={classes.skeleton}
                   />
                   <Skeleton
                     mt={20}
                     h={20}
                     w={"50%"}
-                    className={classes.sketon}
+                    className={classes.skeleton}
                   />
                 </Carousel.Slide>
               ))

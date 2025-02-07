@@ -57,7 +57,7 @@ export const useStyle = createStyles((theme) => ({
     bottom: -10,
     left: 0,
   },
-  sketon: {
+  skeleton: {
     ":after": {
       background: "#0a2955",
     },
