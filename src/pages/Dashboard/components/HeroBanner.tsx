@@ -10,9 +10,7 @@ import {
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useMediaQuery } from "@mantine/hooks";
 import useHomeStore from "@/store/movieslice";
-import { useQuery } from "@tanstack/react-query";
-import { movieType } from "@/types/MovieType/movietype";
-import fetchDataFromApi from "@/api";
+import { useGetUpcomingMovies } from "@/store/server/movies/queries";
 import { useState, useEffect, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStyle } from "@/styles/UseStyles";
@@ -24,11 +22,7 @@ const HeroBanner = () => {
   const [query, setQuery] = useState<string>("");
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   const navigate = useNavigate();
-  const { data: movieList, isFetching } = useQuery<movieType>({
-    queryKey: ["movie-list"],
-    queryFn: () => fetchDataFromApi("/movie/upcoming"),
-    refetchOnWindowFocus: false,
-  });
+  const { data: movieList, isFetching } = useGetUpcomingMovies();
 
   useEffect(() => {
     if (!movieList) return;

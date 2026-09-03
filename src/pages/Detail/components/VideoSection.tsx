@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { Carousel } from "@mantine/carousel";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useMediaQuery } from "@mantine/hooks";
-import { videoresult } from "@/types/MovieDetail/Credits";
+import { videoresult } from "@/store/server/mediaDetail/interface";
 import Polygon from "@/components/Videotype/Polygon";
 import VidepPopup from "@/components/Videotype/VideoPopup";
 

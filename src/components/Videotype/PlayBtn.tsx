@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import VidepPopup from "./VideoPopup";
 import { Text } from "@mantine/core";
 import Polygon from "./Polygon";
-import { videoresult } from "@/types/MovieDetail/Credits";
+import { videoresult } from "@/store/server/mediaDetail/interface";
 import { PolygonStyle } from "@/styles/PolygonStyle";
 
 interface videoProps {

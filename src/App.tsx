@@ -1,9 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { Flex, Loader } from "@mantine/core";
-import { configuretype } from "./types/Configure/configuration";
 import useHomeStore from "./store/movieslice";
-import fetchDataFromApi from "./api";
+import { useGetConfiguration } from "./store/server/configuration/queries";
 import { Suspense, lazy, useEffect } from "react";
 
 const Dashboard = lazy(() => import("@/pages/Dashboard/Dashboard"));
@@ -17,11 +15,7 @@ export default function App() {
     (state) => state.setApiConfiguration
   );
 
-  const { data: configData, isFetching } = useQuery<configuretype>({
-    queryKey: ["configure"],
-    queryFn: () => fetchDataFromApi("/configuration"),
-    refetchOnWindowFocus: false,
-  });
+  const { data: configData, isFetching } = useGetConfiguration();
 
   useEffect(() => {
     if (!configData) return;

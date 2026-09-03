@@ -1,23 +1,13 @@
 import { Box, Container, Flex, SegmentedControl, Title } from "@mantine/core";
-import { useQuery } from "@tanstack/react-query";
-import { movieType } from "@/types/MovieType/movietype";
 import { useState } from "react";
 import CarouselComponent from "@/components/carousel/Carousel";
-import fetchDataFromApi from "@/api";
+import { useGetPopular } from "@/store/server/movies/queries";
 import { useSegements } from "@/styles/SegmentStyle";
 import { useMediaQuery } from "@mantine/hooks";
 const Popular = () => {
   const [endpoint, setEndpoint] = useState("tv");
 
-  const {
-    data: trendMovie,
-    isLoading,
-    isFetching,
-  } = useQuery<movieType>({
-    queryKey: ["popular-movie", endpoint],
-    queryFn: () => fetchDataFromApi(`/${endpoint}/popular`),
-    refetchOnWindowFocus: false,
-  });
+  const { data: trendMovie, isLoading, isFetching } = useGetPopular(endpoint);
   const onTabChange = (data: string) => {
     setEndpoint(data === "TV" ? "tv" : "movie");
   };

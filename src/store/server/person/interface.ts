@@ -1,10 +1,20 @@
-import { resultType } from "../MovieType/movietype";
+import { resultType } from "@/types/MovieType/movietype";
 
-export interface CastListType {
-  page: number;
-  results: castResultType[];
-  total_pages: number;
-  total_results: number;
+export interface CastBio {
+  adult: boolean;
+  also_known_as: string[];
+  biography: string;
+  birthday: string;
+  deathday: string | null;
+  gender: number;
+  homepage: null;
+  id: number;
+  imdb_id: string;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
 }
 
 export interface castResultType {
@@ -34,7 +44,13 @@ export interface castResultType {
   popularity: string;
   profile_path: string;
 }
-[];
+
+export interface CastListType {
+  page: number;
+  results: castResultType[];
+  total_pages: number;
+  total_results: number;
+}
 
 export interface CastMovieType {
   cast: resultType[];

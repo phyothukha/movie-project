@@ -1,4 +1,5 @@
-import { GeneresProps, sortDataType } from "@/types/MovieDetail/Detail";
+import { GeneresProps } from "@/store/server/genres/interface";
+import { sortDataType } from "@/store/server/discover/interface";
 import { StylesConfig } from "react-select";
 
 const colourStyles: StylesConfig<GeneresProps> = {

@@ -7,12 +7,10 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useMediaQuery, useIntersection } from "@mantine/hooks";
-import { movieType } from "@/types/MovieType/movietype";
-import fetchDataFromApi from "@/api";
+import { useSearchMulti } from "@/store/server/search/queries";
 import Layout from "@/layout/Layout";
 import MovieCard from "@/components/MovieCard/MovieCard";
 import noResults from "@/assets/no-results.png";
@@ -23,15 +21,7 @@ const Search = () => {
   const isSmallestTable = useMediaQuery("(max-width:420px)");
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery<movieType>({
-      queryKey: ["search-data", query],
-      queryFn: ({ pageParam }) =>
-        fetchDataFromApi("search/multi", { query, page: pageParam }),
-      initialPageParam: 1,
-      getNextPageParam: (lastPage) =>
-        lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
-      enabled: Boolean(query),
-    });
+    useSearchMulti(query);
 
   const { ref: sentinelRef, entry } = useIntersection({
     threshold: 0.1,

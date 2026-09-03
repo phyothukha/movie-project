@@ -4,9 +4,7 @@ import Trending from "./components/Trending";
 import Popular from "./components/Popular";
 import Toprated from "./components/Toprated";
 import { Card, Container, Skeleton, Text, Title } from "@mantine/core";
-import { useQuery } from "@tanstack/react-query";
-import { CastListType } from "@/types/CastType/Cast";
-import fetchDataFromApi from "@/api";
+import { useGetPopularPeople } from "@/store/server/person/queries";
 import { Carousel } from "@mantine/carousel";
 import { useStyle } from "@/styles/UseStyles";
 import useHomeStore from "@/store/movieslice";
@@ -19,15 +17,7 @@ import {
 import { useMediaQuery } from "@mantine/hooks";
 
 const Dashboard = () => {
-  const {
-    data: CastData,
-    isLoading,
-    isFetching,
-  } = useQuery<CastListType>({
-    queryKey: ["cast-data"],
-    queryFn: () => fetchDataFromApi(`person/popular`),
-    refetchOnWindowFocus: false,
-  });
+  const { data: CastData, isLoading, isFetching } = useGetPopularPeople();
 
   const { classes } = useStyle();
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");

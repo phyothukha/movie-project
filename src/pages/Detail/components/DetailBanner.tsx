@@ -9,18 +9,16 @@ import {
   Divider,
 } from "@mantine/core";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PlayBtn from "../../../components/Videotype/PlayBtn";
 import { FC } from "react";
 import dayjs from "dayjs";
 import PosterFallback from "@/assets/no-poster.png";
 import { useMediaQuery } from "@mantine/hooks";
-import fetchDataFromApi from "@/api";
-import { CrewType, videoresult } from "@/types/MovieDetail/Credits";
+import { useGetMediaDetail } from "@/store/server/mediaDetail/queries";
+import { CrewType, videoresult } from "@/store/server/mediaDetail/interface";
 import { useStyle } from "@/styles/UseStyles";
 import useHomeStore, { genresProps } from "@/store/movieslice";
-import { detailProps } from "@/types/MovieDetail/Detail";
 import CircularProgress from "@/components/Circular/CircularProgress";
 import InfoData from "@/components/InfoData/InfoData";
 import Skelton from "@/components/Skeleton/Skeleton";
@@ -41,11 +39,7 @@ const DetailBanner: FC<StatusType> = ({ crew, video }) => {
     (w) => w.job === "Screenplay" || w.job === "Story" || w.job === "Writer"
   );
 
-  const { data: movieDetail, isFetching } = useQuery<detailProps>({
-    queryKey: ["movie-detail", { mediatype, id }],
-    queryFn: () => fetchDataFromApi(`${mediatype}/${id}`),
-    refetchOnWindowFocus: false,
-  });
+  const { data: movieDetail, isFetching } = useGetMediaDetail(mediatype, id);
 
   const toHourandMinute = (totalMinute: number) => {
     const hours = Math.floor(totalMinute / 60);

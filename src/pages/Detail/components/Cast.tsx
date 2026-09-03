@@ -4,7 +4,7 @@ import Avator from "@/assets/avatar.png";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { useNavigate } from "react-router-dom";
-import { CastType } from "@/types/MovieDetail/Credits";
+import { CastType } from "@/store/server/mediaDetail/interface";
 import { useStyle } from "@/styles/UseStyles";
 import useHomeStore from "@/store/movieslice";
 

@@ -9,17 +9,13 @@ import {
   Grid,
 } from "@mantine/core";
 import { useState } from "react";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import Select, { ActionMeta, MultiValue, SingleValue } from "react-select";
 import makeAnimated from "react-select/animated";
 import { useMediaQuery } from "@mantine/hooks";
-import {
-  GeneresProps,
-  GenreTypeProps,
-  sortDataType,
-} from "@/types/MovieDetail/Detail";
-import fetchDataFromApi from "@/api";
-import { movieType } from "@/types/MovieType/movietype";
+import { GeneresProps } from "@/store/server/genres/interface";
+import { sortDataType } from "@/store/server/discover/interface";
+import { useGetGenres } from "@/store/server/genres/queries";
+import { useDiscoverByType } from "@/store/server/discover/queries";
 import Layout from "@/layout/Layout";
 import { colourStyles, colourStyles2 } from "@/styles/SelectOptionStyle";
 import MovieCard from "@/components/MovieCard/MovieCard";
@@ -49,10 +45,7 @@ const Explore = () => {
   const [sortBy, setSortBy] = useState<sortDataType | null>();
 
   //fetch-data genre
-  const { data: GenreData } = useQuery<GenreTypeProps>({
-    queryKey: ["genre-data", mediatype],
-    queryFn: () => fetchDataFromApi(`/genre/${mediatype}/list`),
-  });
+  const { data: GenreData } = useGetGenres(mediatype);
 
   //genre-change function
 
@@ -75,15 +68,10 @@ const Explore = () => {
     }
   };
 
-  const { data: ExploreData, isLoading } = useQuery<movieType>({
-    queryKey: ["explore-data", mediatype, page, genre, sortBy?.value],
-    queryFn: () =>
-      fetchDataFromApi(`/discover/${mediatype}`, {
-        page,
-        ...(genre && genre.length > 0 ? { with_genres: genre.join(",") } : {}),
-        ...(sortBy ? { sort_by: sortBy.value } : {}),
-      }),
-    placeholderData: keepPreviousData,
+  const { data: ExploreData, isLoading } = useDiscoverByType(mediatype, {
+    page,
+    genreIds: genre,
+    sortBy: sortBy?.value,
   });
 
   const handlePageChange = (newpage: number) => {

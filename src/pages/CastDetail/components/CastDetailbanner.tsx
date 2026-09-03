@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import PosterFallBack from "@/assets/no-poster.png";
 import useHomeStore from "@/store/movieslice";
-import { CastBio } from "@/types/CastType/CastBio";
+import { CastBio } from "@/store/server/person/interface";
 import { FC, useState } from "react";
 import InfoData from "@/components/InfoData/InfoData";
 import dayjs from "dayjs";

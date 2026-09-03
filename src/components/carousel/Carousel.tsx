@@ -71,8 +71,8 @@ const CarouselComponent: React.FC<CarouselProps> = ({
           <BsFillArrowLeftCircleFill size={30} color="#000" />
         }
       >
-        {data.map((trend) => (
-          <Carousel.Slide key={trend.id}>
+        {data.map((trend, index) => (
+          <Carousel.Slide key={`${trend.media_type || endpoint}-${trend.id}-${index}`}>
             <MovieCard
               explore={trend}
               mediatype={trend.media_type || endpoint}

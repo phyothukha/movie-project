@@ -1,12 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import Layout from "@/layout/Layout";
 import CastDetailbanner from "./components/CastDetailbanner";
-import fetchDataFromApi from "@/api";
+import {
+  useGetPersonDetail,
+  useGetPersonCombinedCredits,
+} from "@/store/server/person/queries";
 import { useParams } from "react-router-dom";
-import { CastBio } from "@/types/CastType/CastBio";
 import { Container } from "@mantine/core";
 import CarouselComponent from "@/components/carousel/Carousel";
-import { CastMovieType } from "@/types/CastType/Cast";
 
 const CastDetail = () => {
   const { castId } = useParams();
@@ -15,20 +15,13 @@ const CastDetail = () => {
     data: CastBioData,
     isLoading,
     isFetching,
-  } = useQuery<CastBio>({
-    queryKey: ["cast-bio-data", castId],
-    queryFn: () => fetchDataFromApi(`person/${castId}`),
-    refetchOnWindowFocus: false,
-  });
+  } = useGetPersonDetail(castId);
 
   const {
     data: CastVideoData,
     isLoading: CastLoading,
     isFetching: CastFetching,
-  } = useQuery<CastMovieType>({
-    queryKey: ["cast-video-data", castId],
-    queryFn: () => fetchDataFromApi(`/person/${castId}/combined_credits`),
-  });
+  } = useGetPersonCombinedCredits(castId);
 
   const medatype = CastVideoData?.cast[0].media_type;
   const endpoint = medatype === "tv" ? "tv" : "movie";
