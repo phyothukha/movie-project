@@ -12,7 +12,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useMediaQuery, useDisclosure } from "@mantine/hooks";
 import { FiSearch } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Header = () => {
   const [scroll, setScroll] = useState(false);
@@ -23,9 +23,16 @@ const Header = () => {
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   const location = useLocation();
   const navigate = useNavigate();
+  const { query: routeQuery } = useParams();
+  const [query, setQuery] = useState(routeQuery ? decodeURIComponent(routeQuery) : "");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
+  useEffect(() => {
+    setQuery(routeQuery ? decodeURIComponent(routeQuery) : "");
+  }, [routeQuery]);
 
   const handleScroll = useCallback(() => {
     const scrollTop = window.scrollY;
@@ -54,6 +61,19 @@ const Header = () => {
     } else {
       navigate("/explore/tv");
     }
+  };
+
+  const handleSearchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const trimmed = query.trim();
+    if (!trimmed) return;
+    navigate(`/search/${encodeURIComponent(trimmed)}`);
+    if (isSmallerThanTable) setShow(false);
+  };
+
+  const handleSearchClear = () => {
+    setQuery("");
+    setShow(false);
   };
 
   return (
@@ -125,6 +145,8 @@ const Header = () => {
               </Flex>
             )}
             <FiSearch
+              role="button"
+              aria-label={show ? "Close search" : "Open search"}
               onClick={() => setShow(!show)}
               style={{
                 cursor: "pointer",
@@ -133,13 +155,16 @@ const Header = () => {
               }}
             />
             {show && (
-              <form className="search-form">
+              <form className="search-form" onSubmit={handleSearchSubmit}>
                 <TextInput
+                  autoFocus
                   placeholder="Search Movie"
                   className="search-text-input"
+                  value={query}
+                  onChange={(event) => setQuery(event.currentTarget.value)}
                   rightSection={
                     <ImCross
-                      onClick={() => setShow(!show)}
+                      onClick={handleSearchClear}
                       style={{
                         color: "#000fee",
                         cursor: "pointer",

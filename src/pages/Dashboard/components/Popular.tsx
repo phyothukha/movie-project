@@ -1,5 +1,5 @@
 import { Box, Container, Flex, SegmentedControl, Title } from "@mantine/core";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { movieType } from "@/types/MovieType/movietype";
 import { useState } from "react";
 import CarouselComponent from "@/components/carousel/Carousel";

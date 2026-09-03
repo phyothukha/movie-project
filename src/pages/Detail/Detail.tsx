@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import DetailBanner from "./components/DetailBanner";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Cast from "./components/Cast";
 import VideoSection from "./components/VideoSection";
 import { Container } from "@mantine/core";

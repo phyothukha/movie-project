@@ -1,5 +1,5 @@
 import { Box, Container, Flex, SegmentedControl, Title } from "@mantine/core";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import fetchDataFromApi from "@/api";
 import { movieType } from "@/types/MovieType/movietype";

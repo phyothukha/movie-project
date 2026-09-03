@@ -9,7 +9,7 @@ import {
   Grid,
 } from "@mantine/core";
 import { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import Select, { ActionMeta, MultiValue, SingleValue } from "react-select";
 import makeAnimated from "react-select/animated";
 import { useMediaQuery } from "@mantine/hooks";
@@ -78,12 +78,12 @@ const Explore = () => {
   const { data: ExploreData, isLoading } = useQuery<movieType>({
     queryKey: ["explore-data", mediatype, page, genre, sortBy?.value],
     queryFn: () =>
-      fetchDataFromApi(
-        `/discover/${mediatype}?page=${page}&with_genres=${genre}${
-          sortBy ? `&sort_by=${sortBy.value}` : ""
-        }`
-      ),
-    keepPreviousData: true,
+      fetchDataFromApi(`/discover/${mediatype}`, {
+        page,
+        ...(genre && genre.length > 0 ? { with_genres: genre.join(",") } : {}),
+        ...(sortBy ? { sort_by: sortBy.value } : {}),
+      }),
+    placeholderData: keepPreviousData,
   });
 
   const handlePageChange = (newpage: number) => {

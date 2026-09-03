@@ -9,7 +9,7 @@ import {
   Divider,
 } from "@mantine/core";
 import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PlayBtn from "../../../components/Videotype/PlayBtn";
 import { FC } from "react";

@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MantineProvider } from "@mantine/core";
 import { BrowserRouter } from "react-router-dom";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import MyGlobalStyle from "./styles/MyGlobalStyle.tsx";
 
 const queryClient = new QueryClient();

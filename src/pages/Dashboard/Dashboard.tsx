@@ -4,7 +4,7 @@ import Trending from "./components/Trending";
 import Popular from "./components/Popular";
 import Toprated from "./components/Toprated";
 import { Card, Container, Skeleton, Text, Title } from "@mantine/core";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { CastListType } from "@/types/CastType/Cast";
 import fetchDataFromApi from "@/api";
 import { Carousel } from "@mantine/carousel";

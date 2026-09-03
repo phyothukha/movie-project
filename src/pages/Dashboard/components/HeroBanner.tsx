@@ -10,10 +10,10 @@ import {
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useMediaQuery } from "@mantine/hooks";
 import useHomeStore from "@/store/movieslice";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { movieType } from "@/types/MovieType/movietype";
 import fetchDataFromApi from "@/api";
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStyle } from "@/styles/UseStyles";
 
@@ -24,22 +24,25 @@ const HeroBanner = () => {
   const [query, setQuery] = useState<string>("");
   const isSmallerThanTable = useMediaQuery("(max-width:768px)");
   const navigate = useNavigate();
-  const { isFetching } = useQuery<movieType>({
-    queryKey: "movie-list",
+  const { data: movieList, isFetching } = useQuery<movieType>({
+    queryKey: ["movie-list"],
     queryFn: () => fetchDataFromApi("/movie/upcoming"),
     refetchOnWindowFocus: false,
-    onSuccess: (Movie) => {
-      const randombgPath =
-        url.backdrop +
-        Movie?.results?.[Math.floor(Math.random() * 20)].backdrop_path;
-      setBackground(randombgPath);
-    },
   });
+
+  useEffect(() => {
+    if (!movieList) return;
+    const randombgPath =
+      url.backdrop +
+      movieList.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+    setBackground(randombgPath);
+  }, [movieList, url.backdrop]);
 
   const searchData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (query.length > 0) {
-      navigate(`/search/${query}`);
+    const trimmed = query.trim();
+    if (trimmed.length > 0) {
+      navigate(`/search/${encodeURIComponent(trimmed)}`);
     }
   };
   return (

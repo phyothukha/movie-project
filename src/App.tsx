@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Flex, Loader } from "@mantine/core";
 import { configuretype } from "./types/Configure/configuration";
 import useHomeStore from "./store/movieslice";
 import fetchDataFromApi from "./api";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 const Dashboard = lazy(() => import("@/pages/Dashboard/Dashboard"));
 const Detail = lazy(() => import("@/pages/Detail/Detail"));
@@ -17,18 +17,20 @@ export default function App() {
     (state) => state.setApiConfiguration
   );
 
-  const { isFetching } = useQuery<configuretype>({
-    queryKey: "configure",
+  const { data: configData, isFetching } = useQuery<configuretype>({
+    queryKey: ["configure"],
     queryFn: () => fetchDataFromApi("/configuration"),
     refetchOnWindowFocus: false,
-    onSuccess: (data) => {
-      setApiConfiguration({
-        backdrop: data?.images.secure_base_url + "original",
-        poster: data?.images.secure_base_url + "original",
-        profile: data?.images.secure_base_url + "original",
-      });
-    },
   });
+
+  useEffect(() => {
+    if (!configData) return;
+    setApiConfiguration({
+      backdrop: configData.images.secure_base_url + "original",
+      poster: configData.images.secure_base_url + "original",
+      profile: configData.images.secure_base_url + "original",
+    });
+  }, [configData, setApiConfiguration]);
 
   if (isFetching) {
     return (
