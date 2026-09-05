@@ -5,13 +5,13 @@ import {
   Container,
   Title,
   Loader,
-  Pagination,
+  Text,
   Grid,
 } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select, { ActionMeta, MultiValue, SingleValue } from "react-select";
 import makeAnimated from "react-select/animated";
-import { useMediaQuery } from "@mantine/hooks";
+import { useMediaQuery, useIntersection } from "@mantine/hooks";
 import { GeneresProps } from "@/store/server/genres/interface";
 import { sortDataType } from "@/store/server/discover/interface";
 import { useGetGenres } from "@/store/server/genres/queries";
@@ -41,7 +41,6 @@ const Explore = () => {
   const isSmallestTable = useMediaQuery("(max-width:420px)");
   //chage-data
   const [genre, setGenre] = useState<number[]>();
-  const [page, setPage] = useState<number>(1);
   const [sortBy, setSortBy] = useState<sortDataType | null>();
 
   //fetch-data genre
@@ -68,15 +67,28 @@ const Explore = () => {
     }
   };
 
-  const { data: ExploreData, isLoading } = useDiscoverByType(mediatype, {
-    page,
+  const {
+    data: ExploreData,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useDiscoverByType(mediatype, {
     genreIds: genre,
     sortBy: sortBy?.value,
   });
 
-  const handlePageChange = (newpage: number) => {
-    setPage(newpage);
-  };
+  const { ref: sentinelRef, entry } = useIntersection({
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (entry?.isIntersecting && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [entry?.isIntersecting, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const results = ExploreData?.pages.flatMap((p) => p.results) ?? [];
 
   return (
     <Layout>
@@ -127,35 +139,33 @@ const Explore = () => {
             <Loader />
           </Flex>
         ) : (
-          <Grid>
-            {ExploreData?.results?.map((explore, index) => (
-              <Grid.Col
-                key={index}
-                span={isSmallestTable ? 6 : isSmallerThanTable ? 4 : 2}
-                my={20}
-              >
-                <MovieCard explore={explore} mediatype={mediatype} />
-              </Grid.Col>
-            ))}
-          </Grid>
+          <>
+            <Grid>
+              {results.map((explore) => (
+                <Grid.Col
+                  key={explore.id}
+                  span={isSmallestTable ? 6 : isSmallerThanTable ? 4 : 2}
+                  my={20}
+                >
+                  <MovieCard explore={explore} mediatype={mediatype} />
+                </Grid.Col>
+              ))}
+            </Grid>
+            <div ref={sentinelRef} />
+            {isFetchingNextPage && (
+              <Flex justify="center" my={20}>
+                <Loader size="sm" />
+              </Flex>
+            )}
+            {!hasNextPage && (
+              <Flex justify="center" my={20}>
+                <Text size={14} c="dimmed">
+                  You've reached the end of the results.
+                </Text>
+              </Flex>
+            )}
+          </>
         )}
-
-        <Flex justify="end" my={20}>
-          <Pagination
-            total={ExploreData?.total_pages || 0}
-            value={page}
-            onChange={handlePageChange}
-            position="center"
-            styles={() => ({
-              control: {
-                "&[data-active]": {
-                  background: "#173d77",
-                  border: 0,
-                },
-              },
-            })}
-          />
-        </Flex>
       </Container>
     </Layout>
   );
