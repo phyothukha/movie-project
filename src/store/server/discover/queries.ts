@@ -1,10 +1,11 @@
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import fetchDataFromApi from "@/api";
 import { movieType, DiscoverParams } from "./interface";
 
 const fetchDiscoverByType = (
   mediatype: string | undefined,
-  { page, genreIds, sortBy }: DiscoverParams,
+  page: number,
+  { genreIds, sortBy }: Omit<DiscoverParams, "page">,
 ) =>
   fetchDataFromApi<movieType>(`/discover/${mediatype}`, {
     page,
@@ -16,16 +17,13 @@ const fetchDiscoverByType = (
 
 export const useDiscoverByType = (
   mediatype: string | undefined,
-  params: DiscoverParams,
+  params: Omit<DiscoverParams, "page">,
 ) =>
-  useQuery({
-    queryKey: [
-      "explore-data",
-      mediatype,
-      params.page,
-      params.genreIds,
-      params.sortBy,
-    ],
-    queryFn: () => fetchDiscoverByType(mediatype, params),
-    placeholderData: keepPreviousData,
+  useInfiniteQuery({
+    queryKey: ["explore-data", mediatype, params.genreIds, params.sortBy],
+    queryFn: ({ pageParam }) =>
+      fetchDiscoverByType(mediatype, pageParam, params),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
   });

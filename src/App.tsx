@@ -4,6 +4,7 @@ import useHomeStore from "./store/movieslice";
 import { useGetConfiguration } from "./store/server/configuration/queries";
 import { Suspense, lazy, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const Dashboard = lazy(() => import("@/pages/Dashboard/Dashboard"));
 const Detail = lazy(() => import("@/pages/Detail/Detail"));
@@ -52,6 +53,7 @@ export default function App() {
         </Routes>
       </Suspense>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
