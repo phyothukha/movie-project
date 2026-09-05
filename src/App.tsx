@@ -3,6 +3,7 @@ import { Flex, Loader } from "@mantine/core";
 import useHomeStore from "./store/movieslice";
 import { useGetConfiguration } from "./store/server/configuration/queries";
 import { Suspense, lazy, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 const Dashboard = lazy(() => import("@/pages/Dashboard/Dashboard"));
 const Detail = lazy(() => import("@/pages/Detail/Detail"));
@@ -34,20 +35,23 @@ export default function App() {
     );
   }
   return (
-    <Suspense
-      fallback={
-        <Flex h={"100vh"} justify={"center"} align={"center"}>
-          <Loader />
-        </Flex>
-      }
-    >
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/:mediatype/:id" element={<Detail />} />
-        <Route path="/explore/:mediatype" element={<Explore />} />
-        <Route path="/search/:query" element={<Search />} />
-        <Route path="/cast/:castId" element={<CastDetail />} />
-      </Routes>
-    </Suspense>
+    <>
+      <Suspense
+        fallback={
+          <Flex h={"100vh"} justify={"center"} align={"center"}>
+            <Loader />
+          </Flex>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/:mediatype/:id" element={<Detail />} />
+          <Route path="/explore/:mediatype" element={<Explore />} />
+          <Route path="/search/:query" element={<Search />} />
+          <Route path="/cast/:castId" element={<CastDetail />} />
+        </Routes>
+      </Suspense>
+      <Analytics />
+    </>
   );
 }
